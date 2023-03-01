@@ -23,13 +23,17 @@ export default {
 <style scoped>
     #goods{
         width: 100%;
+        background-color: #f6f6f6;
         /* height: ;    */
-        display: flex;
+        /* display: flex; */
         /* flex-direction: column; */
-        flex-wrap: wrap; 
+        /* flex-wrap: wrap;  */
     }
     #goodcon{
-        width: 33.33%;
+        width: 80%;
+        /* height; */
+        margin: 0 auto;
+        margin-top: 50px;
         /* height: 100%; */
         /* flex: 1; */
         

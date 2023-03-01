@@ -2,7 +2,7 @@
   <div id="app">
    <Header/>
    <Home></Home>
-   <Footer/>
+   <!-- <Footer/> -->
   </div>
 </template>
 <script>

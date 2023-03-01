@@ -2,9 +2,8 @@ import {request} from './api'
 
 export function requestLogin(data){
     return request({
-        url:'/login',
+        url:'/user/login',
         method:'post',
         data:data
-        
     })
 }

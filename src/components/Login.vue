@@ -32,10 +32,19 @@ export default {
   methods: {
     toHome(){
         //将数据提交到后台
-        requestLogin(this.$qs.stringify(this.ruleform)).then(res=>{
+        requestLogin(this.ruleform).then(res=>{
+          console.log("qqqq")
+
+          console.log(res)
+          // if(res.status == 0){
+          //   localStorage.setItem('token',res.data.token)
+          //   this.$router.push('/home');
+          //   console.log( res);
+          // }
+          // else {
+          //   alert("账号或密码错误");
+          // }
             
-            this.$router.push('/home');
-            console.log("login ok!" + res);
         })
         .catch(err=>{
             console.log(err)
@@ -52,8 +61,8 @@ export default {
 
 <style lang="scss" scoped>
 #login {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
   background-image: linear-gradient(45deg, #d04b8c, #8f54be, #7258d5);
   /* background-color: pink; */

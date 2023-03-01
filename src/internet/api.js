@@ -7,8 +7,8 @@ import router from '../router/index'
 export function request(config){
     const instance = axios.create({
         // baseURL:'http://47.103.198.84:8090/ems',
-        baseURL:'api',  
-        timeout:5000,
+        baseURL:'http://127.0.0.0:8088/api',  
+        timeout:10000,
         headers:{
             token:''
         }

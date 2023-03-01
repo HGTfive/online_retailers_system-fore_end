@@ -1,55 +1,75 @@
 <template>
   <div id="header">
     <div id="nav">
-      <span >
-        <el-button
-          ref="btn"
-          @click="drawer = true"
-          type="primary"
-          style="margin-left: 16px"
-        >
-          我的
-        </el-button>
+      <span @click="openMsg">
+        <i class="el-icon-s-fold"></i>
       </span>
-      <span id="title">今日好物</span>
-      <span id="last">搜索</span>
-      <el-drawer
-  title="我是标题"
-  :visible.sync="drawer"
-  :before-close="handleClose">
-  <span>我来啦!</span>
-</el-drawer>
+      <span id="title">今日热门</span>
+      <Search v-if="iShow==true"></Search>
+      <span id="last"
+        ><el-button type="primary" icon="el-icon-search">搜索</el-button></span
+      >
     </div>
-    
+    <div id="msg" ref="msg" v-if="drawer">
+      <el-row class="tac">
+        <el-col :span="12">
+          <el-menu
+            default-active="2"
+            class="el-menu-vertical-demo"
+            @open="handleOpen"
+            @close="handleClose"
+          >
+            <el-menu-item index="2">
+              <i class="el-icon-menu"></i>
+              <p slot="title" @click="toMsg">个人主页</p>
+            </el-menu-item>
+            <el-menu-item index="2">
+              <i class="el-icon-menu"></i>
+              <p slot="title" @click="toStore">我的收藏</p>
+            </el-menu-item>
+            <el-menu-item index="2">
+              <i class="el-icon-menu"></i>
+              <p slot="title">我的帖子</p> </el-menu-item
+            ><el-menu-item index="2">
+              <i class="el-icon-menu"></i>
+              <p slot="title">消息</p>
+            </el-menu-item>
+          </el-menu>
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
 <script>
+import Search from "../views/Search.vue";
 export default {
-    data(){
-        return {
-            drawer: false,
-
-        }
+  components: {
+    Search,
+  },
+  data() {
+    return {
+      drawer: false,
+      iShow:true
+    };
+  },
+  methods: {
+    openMsg() {
+      this.drawer = !this.drawer;
     },
-    methods: {
-      handleClose(done) {
-        this.$confirm('确认关闭？')
-          .then(_ => {
-            done();
-          })
-          .catch(_ => {});
-      }
-
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
     },
-    mounted(){
-        console.log(this.$refs)
-        let btn = this.$refs.btn;
-        // console.log(btn1);
-        // console.log(btn.className)
-    
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    toMsg(){
+      this.$router.push('/mymessage');
+    },
+    toStore(){
+      this.$router.push('/store')
     }
-
+  },
 };
 </script>
 
@@ -57,7 +77,21 @@ export default {
 #header {
   width: 100%;
   height: 46px;
-  background-color: rgb(69, 69, 217);
+  background-color: #409eff;
+  /* position: relative; */
+}
+#search{
+  float: right;
+  margin-right: 100px;
+  line-height: 46px;
+}
+#msg {
+  position: fixed;
+  /* background-color: pink; */
+  background-color: #f6f6f6;
+  width: 450px;
+  height: 800px;
+  display: block;
 }
 #nav {
   width: 100%;
@@ -71,6 +105,9 @@ span {
   color: white;
   line-height: 46px;
 }
+span:hover {
+  cursor: pointer;
+}
 #title {
   float: left;
   left: 45%;
@@ -83,5 +120,12 @@ span:first-child {
 }
 #last {
   right: 5px;
+}
+.el-col {
+  width: 100%;
+}
+.el-col p {
+  /* color: black; */
+  display: inline;
 }
 </style>

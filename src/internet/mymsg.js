@@ -1,21 +1,16 @@
 import { request } from "./api";
 
-export function postmymsg(username,sex,age,num){
+export function postmymsg(data){
     return request({
-        url:'user/changeinfo',
+        url:'my/msg',
         method:'post',
-        params:{
-            username,
-            sex,
-            age, 
-            num,
-        }
+        data:data
     })
 }
 
 export function getmymsg(){
     return request({
-        url:'user/findById',
+        url:'my/getmsg',
         method:'get'
     })
 }
